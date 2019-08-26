@@ -46,7 +46,7 @@ The data for this study was collected from MNIST HAM10000 Image dataset on Kaggl
 
 As seen in the picture below, while the sampling from each gender is balanced, the category counts are highly imbalanced with melanocytic nevi(nv) making up 66% of the data and the class with the fewest number of samples, dermatofibroma (df), making up only a little over 1% of the data. 
 
-![Classes By Gender]("./images/class_balance_by_gender.png")
+![Classes By Gender]("class_balance_by_gender.png")
 
 In order to balance the classes, a function was used to augment the data using the Keras ImageGenerator. The function loops through the original pictures within a class folder, passes each through a random transformation and then re-saves it as a new image. It repeats this process until the class has equal to or greater than the number of images in the master class. This process increased the training data from 5,007 to 26,273 images and can be found in the "3_manually_augmenting_data_code" notebook. The images below are example of types of transformations performed on the original images to augment the data. 
 
