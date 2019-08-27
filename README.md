@@ -6,31 +6,34 @@ According to the Skin Cancer Foundation, skin cancer is the most common cancer i
 
 ## Data Dictionary
 
-All data can be found in the "skin-cancer-mnist-ham10000" folder.
+Data too large to load to GitHub and can be found here: https://www.kaggle.com/kmader/skin-cancer-mnist-ham10000
 
 |Folder|Source|Contents|
 |---|---|---|
 |HAM10000_images_part_1|Kaggle/ISIC|contains the first set of the 10,015 images|
 |HAM10000_images_part_2|Kaggle/ISIC|contains the second set of the 10,015 images|
-|image_data|validation|HAM10000 Images|contains 25% of the HAM10000 images for validation|
-|image_data_train|HAM10000 Images|contains 50% of the HAM10000 images for training|
-|image_data_test|HAM10000 Images|contains 25% of the HAM 10000 images for testing|
-|image_data_train_augmented|image_data_train|dataset of 26,000+ images created from augmenting the image_data_train|
-|image_data_test_balanced|image_data_test|dataset of 196 images created from balancing the image_data_test|
-|image_data_validation_balanced|image_data_validation|dataset of 196 images created from balancing the image_data_validation|
+|image_data|validation|HAM10000 Images|contains 25% of the HAM10000 images for validation; code in notebook|
+|image_data_train|HAM10000 Images|contains 50% of the HAM10000 images for training; code in notebook|
+|image_data_test|HAM10000 Images|contains 25% of the HAM 10000 images for testing; code in notebook|
+|image_data_train_augmented|image_data_train|dataset of 26,000+ images created from augmenting the image_data_train; code in notebook|
+|image_data_test_balanced|image_data_test|dataset of 196 images created from balancing the image_data_test; code in notebook|
+|image_data_validation_balanced|image_data_validation|dataset of 196 images created from balancing the image_data_validation; code in notebook|
 |HAM10000_metadata.csv|Kaggle/ISIC|decriptive data pertaining to each image|
 |pre_processed_data_from_isic|Kaggle/ISIC|single array data of the pixels in the images|
 
 ## Repository Structure
-model_1 - mini_batch = 256; call_backs = EarlyStopping, LRPlateau; image_size = (56, 75, 3), padding = "same", epochs = 20
-
-model_2 - mini_batch = 512; call_backs = EarlyStopping, LRPlateau; image_size = (56, 75, 3), padding = "same", epochs = 20
-
-model_3 - mini_batch = 128; call_backs = EarlyStopping, LRPlateau; image_size = (56, 75, 3), padding = "same", epochs = 20
-
-model_4 - pretrained MobileNetV2; mini_batch = 256; call_backs = EarlyStopping, LRPlateau; image_size = (56, 75, 3), padding = "same", epochs = 20
-
-model_5 - pretrained MobileNetV2; mini_batch = 512; call_backs = EarlyStopping, LRPlateau; image_size = (150, 150, 3), padding = "same", epochs = 20
+- cnn_models:
+    - older_models: models with lower performance
+    - final_model
+    - model_performances: breakdown of all of the models that were considered and their performance
+- data_imports_analysis_and_augmentation_code
+    - 1_data_import_and_exploration
+    - 2_target_folder_creation
+    - 3_playing_with_images
+    - 4_manually_augmenting_data_code
+    - 5_meta_data_model
+- images
+- note: saved model weights could not be uploaded due to file size
 
 ## Executive Summary
 
@@ -75,12 +78,16 @@ The precision, recall and F1-score are listed below for each class.
 
 The model had a difficult time predicting classes 0, 3 and 6 in general, over-predicting for incorrect classes, but often missing when it actually was one of the three classes. Classes 4 and 5 were more easily identified and separated from the others. Batch size and data augmentation played a large role in the improved accuracy of the model, as well as increased image size. 
 
-There is signal in the data. With more time and computational power, I feel confident that 
+There is signal in the data. With more time and computational power, I feel confident that I could increase accuracy though maybe at the expense of longer testing time and more costly.
 
 ## Limitations/Future Studies
 
-This is not yet to a standard where it could assist a dermatologist. It could be improved with access to more computational power. In the future, I would like to run models with input size of 225 x 300 x 3 on AWS or a stronger system. 
+This is not yet to a standard where it could assist a dermatologist. It could be improved given more time and a better computer. In the future, I would like to run models with input size of 225 x 300 x 3 on AWS or a stronger system. I also think that more metadata- like the history of the patient, whether or not the lesion had changed in shape, how long the lesion had been there, etc. - might prove to be features that make a good model great. Additionally, once a better model can be created I would like to develop an application so that any person could run this test on their computer or phone with their own images.
 
 ## Resources
 https://www.skincancer.org/skin-cancer-information/
 https://www.kaggle.com/kmader/skin-cancer-mnist-ham10000
+https://towardsdatascience.com/applied-deep-learning-part-4-convolutional-neural-networks-584bc134c1e2
+https://www.degruyter.com/downloadpdf/j/itms.2017.20.issue-1/itms-2017-0003/itms-2017-0003.pdf
+https://towardsdatascience.com/a-simple-cnn-multi-image-classifier-31c463324fa
+
