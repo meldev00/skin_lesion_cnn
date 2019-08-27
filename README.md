@@ -21,6 +21,13 @@ Data too large to load to GitHub and can be found here: https://www.kaggle.com/k
 |HAM10000_metadata.csv|Kaggle/ISIC|decriptive data pertaining to each image|
 |pre_processed_data_from_isic|Kaggle/ISIC|single array data of the pixels in the images|
 
+## Libraries
+- Keras/Tensorflow
+- PIL/Pillow
+- Pandas
+- Matplotlib
+- os
+
 ## Repository Structure
 - cnn_models:
     - older_models: models with lower performance
