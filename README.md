@@ -53,7 +53,7 @@ As seen in the picture below, while the sampling from each gender is balanced, t
 
 In order to balance the classes, a function was used to augment the data using the Keras ImageGenerator. The function loops through the original pictures within a class folder, passes each through a random transformation and then re-saves it as a new image. It repeats this process until the class has equal to or greater than the number of images in the master class. This process increased the training data from 5,007 to 26,273 images and can be found in the "3_manually_augmenting_data_code" notebook. The images below are example of types of transformations performed on the original images to augment the data. 
 
-**(insert pictures from training data to show augmentation, include small caption for description)**
+![Skin Transformations](./images/skin_image_transformed.png)
 
 The original pictures were 450 x 600 x 3, but due to computational power and memory, the input shape for the net had to be much smaller. Two approaches were taken to finding a model that could produce the best results. The first approach was a "home-grown" convolutional neural network trained on just the 26,273 augmented training images. This is referred to as "home-grown" because it did not use a pretrained model, and 26,273 images is a relatively small training batch for a CNN.The second approach was to use a pretrained model, specifically MobileNetV2, to try to accurately classify the data. The benefits to using this model is that it was trained on over of 14 million images to identify edges and shapes; the top layers can be removed in order to add on new fully connected layers that will specifically train to the dataset in this study. 
 
@@ -62,7 +62,7 @@ The original pictures were 450 x 600 x 3, but due to computational power and mem
 
 The model that returned the best accuracy was a pretrained model with MobileNetV2 convolutional layers and six additional fully connected layers. The batch size was 256 and it returned an training accuracy score of 85% and a testing accuracy score of 58%. The training also included class weights to give more attention to class 6 - the melanomas - and class 2 - melanocytic nevi - with the intention of increaseing the recall for those specific classes. As seen in the pictures below, there model began to overfit despite the dropout and early stopping. 
 
-**(insert loss and acc graphs)**
+![Accuracy Graph](./images/model_7_acc_graph.png)
 
 The precision, recall and F1-score are listed below for each class.
 
